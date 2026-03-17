@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+def afficher_menu():
+    print("\n=== CALCULATRICE INTERACTIVE ===")
+    print("1. Addition")
+    print("2. Soustraction")
+    print("3. Multiplication")
+    print("4. Division")
+    print("5. Quitter")
+    print("=================================")
+
+def effectuer_operation(choix, compteur):
+    if choix == 1:
+        operation = "Addition"
+        symbole = "+"
+        resultat = lambda a, b: a + b
+    elif choix == 2:
+        operation = "Soustraction"
+        symbole = "-"
+        resultat = lambda a, b: a - b
+    elif choix == 3:
+        operation = "Multiplication"
+        symbole = "*"
+        resultat = lambda a, b: a * b
+    elif choix == 4:
+        operation = "Division"
+        symbole = "/"
+        if b == 0:
+            print("Erreur : Division par zéro impossible.")
+            return compteur
+        resultat = lambda a, b: a / b
+    else:
+        return compteur
+
+    try:
+        a = float(input("Entrez le premier nombre : "))
+        b = float(input("Entrez le deuxième nombre : "))
+        res = resultat(a, b)
+        print(f"Résultat : {a} {symbole} {b} = {res}")
+        compteur += 1
+    except ValueError:
+        print("Erreur : Veuillez entrer des nombres valides.")
+    return compteur
+
+def main():
+    compteur = 0
+    while True:
+        afficher_menu()
+        try:
+            choix = int(input("Choisissez une option (1-5) : "))
+            if choix == 5:
+                print(f"Nombre total d'opérations effectuées : {compteur}")
+                print("Au revoir !")
+                break
+            elif 1 <= choix <= 4:
+                compteur = effectuer_operation(choix, compteur)
+            else:
+                print("Option invalide. Veuillez choisir entre 1 et 5.")
+        except ValueError:
+            print("Erreur : Veuillez entrer un nombre entier entre 1 et 5.")
+
+if __name__ == "__main__":
+    main()
